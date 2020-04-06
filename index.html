@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>craigslist</title>
+    </head>
+    <body>
+        <script>
+            var baseUrl = 'http://localhost:3000/';
+            function httpGet(url) {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open('GET', url, false);
+                xmlHttp.send(null);
+                return JSON.parse(xmlHttp.responseText);
+            }
+            function makeLanguageList() {
+                var languages = httpGet(baseUrl + 'languages');
+                var optionList = '';
+
+                languages.forEach(function(language) {
+                    optionList += '<option>' + language + '</option>';
+                });
+                document.getElementById('language-list').innerHTML = optionList;
+            }
+            function makeLocationBar() {
+                var locations = httpGet(baseUrl + 'locations');
+                var navList = '';
+
+                locations.forEach(function(location) {
+                    navList += '<li>' + location + '</li>';
+                });
+                document.getElementById('area-list').innerHTML = navList;
+            }
+        </script>
+
+        <h2>craigslist</h2>
+        <select id='language-list'></select>
+
+        <h3>Location</h3>
+        <div id='area-list'></div>
+
+        <br>
+        <form>
+            <input type="text" id="name" placeholder="search craigslist"></input>
+        </form>
+
+        <script>
+            makeLanguageList();
+            makeLocationBar();
+        </script>
+        </div>
+    </body>
+</html>
