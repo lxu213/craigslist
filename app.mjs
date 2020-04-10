@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 var path = require('path')
-var lang = require('./constants')
-// import { LANGUAGES } from './constants';
+var lang = require('./constants.mjs')
+import { LANGUAGES } from './constants.mjs';
 const port = 3000
 
 // todo: cannot import from a different file for some reason
@@ -17,8 +17,8 @@ app.get('/locations', function (req, res) {
 })
 
 app.get('/languages', function (req, res) {
-    const languages = ['english', 'espanol', 'french', 'german', 'italiano'];
-    res.send(languages)
+    // const languages = ['english', 'espanol', 'french', 'german', 'italiano'];
+    res.send(LANGUAGES)
 })
 
 app.get('/inventory', function (req, res) {
